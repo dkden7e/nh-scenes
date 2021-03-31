@@ -1,24 +1,20 @@
 function SceneTarget()
-    local camCoords = GetPedBoneCoords(PlayerPedId(), 37193, 0.0, 0.0, 0.0)
-    local farCoords = GetCoordsFromCam()
+    local camCoords = GetPedBoneCoords(PlayerPedId(), 37193, 0.0, 0.0, 0.0)    
+    local farCoords = camCoords + GetCoordsFromCam()
     local RayHandle = StartExpensiveSynchronousShapeTestLosProbe(camCoords, farCoords, -1, PlayerPedId(), 4)
     local _, hit, endcoords, surfaceNormal, entityHit = GetShapeTestResult(RayHandle)
+    if Vdist(camCoords, endcoords) > 10.0 then return end
     if endcoords[1] == 0.0 then return end
     return endcoords
 end
 
 function GetCoordsFromCam()
-    local rot = GetGameplayCamRot(2)
     local coord = GetGameplayCamCoord()
-    
+    local rot = GetGameplayCamRot(2)
     local tZ = rot.z * 0.0174532924
     local tX = rot.x * 0.0174532924
-    local num = math.abs(math.cos(tX))
-    
-    newCoordX = coord.x + (-math.sin(tZ)) * (num + 4.0)
-    newCoordY = coord.y + (math.cos(tZ)) * (num + 4.0)
-    newCoordZ = coord.z + (math.sin(tX) * 8.0)
-    return vector3(newCoordX, newCoordY, newCoordZ)
+    local num = 0.0 + math.abs(math.cos(tX))
+    return vector3(0.0 + math.sin(tZ) * num * -1, 0.0 + math.cos(tZ) * num, 0.0 + math.sin(tX)) * 1000
 end
 
 function DrawScene(coords, text, color, dist)

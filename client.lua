@@ -25,7 +25,7 @@ RegisterCommand('+scenecreate', function()
         DisableControlAction(0, 200, true)
         placement = SceneTarget()
         if placement ~= nil then
-            DrawMarker(28, placement.x, placement.y, placement.z, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 93, 17, 100, 150, false, false)
+            DrawMarker(28, placement.x, placement.y, placement.z, 0, 0, 0, 0, 0, 0, 0.15, 0.15, 0.15, 93, 17, 100, 255, false, false)
         end
         if IsControlJustReleased(0, 202) then
             settingScene = false
@@ -59,7 +59,7 @@ RegisterCommand('+scenecreate', function()
     local color = scene[2].input
 
     local distance = tonumber(scene[3].input)
-    if type(distance) ~= "number" or distance > 10.0 then distance = 15.0 end
+    if type(distance) ~= "number" or distance > 10.0 then distance = 10.0 end
 
     distance = distance + 0.0
     if distance < 1.1 then distance = 1.1 end
@@ -100,8 +100,8 @@ Citizen.CreateThread(function()
             if not hidden then
                 local plyCoords = GetEntityCoords(PlayerPedId())
                 local closest = ClosestScene()
-                if closest > 15.0 then
-                    Wait(100)
+                if closest > 10.0 then
+                    Wait(250)
                 else
                     for k, v in pairs(scenes) do
                         distance = Vdist(plyCoords, v.coords)
@@ -111,10 +111,10 @@ Citizen.CreateThread(function()
                     end
                 end
             else
-                Wait(100)
+                Wait(250)
             end
         else
-            Wait(100)
+            Wait(250)
         end
     end
 end)
