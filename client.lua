@@ -100,8 +100,8 @@ Citizen.CreateThread(function()
             if not hidden then
                 local plyCoords = GetEntityCoords(PlayerPedId())
                 local closest = ClosestScene()
-                if closest > 10.0 then
-                    Wait(333)
+                if closest > 20.0 then
+                    Wait(100)
                 else
                     for k, v in pairs(scenes) do
                         distance = Vdist(plyCoords, v.coords)
@@ -111,10 +111,10 @@ Citizen.CreateThread(function()
                     end
                 end
             else
-                Wait(333)
+                Wait(100)
             end
         else
-            Wait(333)
+            Wait(100)
         end
     end
 end)
