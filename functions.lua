@@ -19,6 +19,7 @@ end
 
 function DrawScene(coords, text, color, dist)
     local onScreen, x, y = GetScreenCoordFromWorldCoord(coords.x, coords.y, coords.z)
+    if dist < 1.75 then dist = 1.75 end
 
     local scale = ((1 / dist) * 2) * (1 / GetGameplayCamFov()) * 70
 
@@ -29,11 +30,17 @@ function DrawScene(coords, text, color, dist)
         SetTextCentre(1)
         SetTextDropshadow(0, 0, 0, 0, 155)
         SetTextEdge(1, 0, 0, 0, 250)
-        SetTextScale(0.0 * scale, 0.25 * scale)
+        SetTextScale(0.0 * scale, 0.30 * scale)
         SetTextColour(color[1], color[2], color[3], 255)
         
         local height = GetTextScaleHeight(0.40 * scale, 0)
-        local width = (string.len(text)) / 200 * scale
+        local length = string.len(text)
+        local limiter = 160
+        if length > 98 then
+            length = 98
+            limiter = 200
+        end
+        local width = length / limiter * scale
         EndTextCommandDisplayText(x, y)
         DrawRect(x, y + scale / 90, width, height, 0, 0, 0, 90)
     end
