@@ -59,7 +59,7 @@ RegisterCommand('+scenecreate', function()
     local color = scene[2].input
 
     local distance = tonumber(scene[3].input)
-    if type(distance) ~= "number" or distance > 10.0 then distance = 20.0 end
+    if type(distance) ~= "number" or distance > 10.0 then distance = 15.0 end
 
     distance = distance + 0.0
     if distance < 1.1 then distance = 1.1 end
@@ -100,7 +100,7 @@ Citizen.CreateThread(function()
             if not hidden then
                 local plyCoords = GetEntityCoords(PlayerPedId())
                 local closest = ClosestScene()
-                if closest > 20.0 then
+                if closest > 15.0 then
                     Wait(100)
                 else
                     for k, v in pairs(scenes) do
