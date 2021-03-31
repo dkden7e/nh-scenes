@@ -2,15 +2,24 @@ local hidden = false
 scenes = {}
 local settingScene = false
 local coords = {}
+colors = {
+    ["white"] = {255, 255, 255},
+    ["red"] = {255, 0, 0},
+    ["blue"] = {0, 0, 255},
+    ["green"] = {0, 128, 0},
+    ["yellow"] = {255, 255, 0},
+    ["purple"] = {128, 0, 128},
+}
 
 RegisterNetEvent('nh-scenes:send', function(sent)
     scenes = sent
 end)
 
 RegisterCommand('+scenecreate', function()
-    coords = {}
     local placement = SceneTarget()
+    coords = {}
     settingScene = true
+
     while settingScene do
         Wait(5)
         DisableControlAction(0, 200, true)
@@ -23,8 +32,10 @@ RegisterCommand('+scenecreate', function()
             return
         end
     end
+
     if placement == nil then return end
     coords = placement
+
     local scene = exports["nh-keyboard"]:KeyboardInput({
         header = "Add Scene",
         rows = {
@@ -34,7 +45,7 @@ RegisterCommand('+scenecreate', function()
             },
             {
                 id = 1,
-                txt = "Color {white, red, blue, green, yellow}"
+                txt = "Color {white, red, blue, green, yellow, purple}"
             },
             {
                 id = 2,
@@ -42,14 +53,20 @@ RegisterCommand('+scenecreate', function()
             },
         }
     })
+
     if scene[1].input == nil then return end
     local message = scene[1].input
     local color = scene[2].input
+
     local distance = tonumber(scene[3].input)
-    if type(distance) ~= "number" or distance > 10.0 then distance = 10.0 end
+    if type(distance) ~= "number" or distance > 10.0 then distance = 20.0 end
+
     distance = distance + 0.0
     if distance < 1.1 then distance = 1.1 end
-    if color == nil or (color ~= "white" and color ~= "red" and color ~= "blue" and color ~= "green" and color ~= "yellow") then color = "white" end
+
+    if color == nil or string.lower(color) == nil or colors[string.lower(color)] == nil then color = "white" end
+    local color = colors[string.lower(color)]
+
     TriggerServerEvent('nh-scenes:add', coords, message, color, distance)
 end)
 
@@ -89,7 +106,7 @@ Citizen.CreateThread(function()
                     for k, v in pairs(scenes) do
                         distance = Vdist(plyCoords, v.coords)
                         if distance <= v.distance then
-                            DrawScene(v.coords, v.message, v.color)
+                            DrawScene(v.coords, v.message, v.color, distance)
                         end
                     end
                 end
