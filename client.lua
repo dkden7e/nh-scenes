@@ -16,6 +16,7 @@ RegisterNetEvent('nh-scenes:send', function(sent)
 end)
 
 RegisterCommand('+scenecreate', function()
+    if settingScene then settingScene = false return end
     local placement = SceneTarget()
     coords = {}
     settingScene = true
@@ -69,11 +70,6 @@ RegisterCommand('+scenecreate', function()
 
     TriggerServerEvent('nh-scenes:add', coords, message, color, distance)
 end)
-
-RegisterCommand('-scenecreate', function()
-    settingScene = false
-end)
-
 
 RegisterCommand('+scenehide', function()
     hidden = not hidden
