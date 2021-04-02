@@ -22,7 +22,7 @@ While in your server have your players bind the 3 keys in Settings > Keybindings
 ![Keybindings](https://lithi.io/file/PGJj.png)
 
 
-You can place a scene by holding the `Place Scene` key and releasing the key when you are happy with the placement, filling out the information using my other resource [nh-keyboard](https://forum.cfx.re/t/release-standalone-nerohiro-s-keyboard-dynamic-nui-keyboard-input/2506326) and place away!
+You can place a scene by holding the `Place Scene` key and pressing it again when you are happy with the placement, filling out the information using my other resource [nh-keyboard](https://forum.cfx.re/t/release-standalone-nerohiro-s-keyboard-dynamic-nui-keyboard-input/2506326) and place away!
 
 if you wish not to use my keyboard resource, you can easily hook it up to your own.
 
