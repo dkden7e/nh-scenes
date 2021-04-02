@@ -16,6 +16,10 @@ RegisterNetEvent('nh-scenes:send', function(sent)
 end)
 
 RegisterCommand('+scenecreate', function()
+    -- do nothing on keydown
+end)
+
+RegisterCommand('-scenecreate', function()
     if settingScene then settingScene = false return end
     local placement = SceneTarget()
     coords = {}
@@ -34,7 +38,7 @@ RegisterCommand('+scenecreate', function()
         end
     end
 
-    if placement == nil then return end
+    if placement[1] == 0.0 or placement == nil or not placement then return end
     coords = placement
 
     local scene = exports["nh-keyboard"]:KeyboardInput({
@@ -94,11 +98,11 @@ Citizen.CreateThread(function()
         Wait(5)
         if #scenes > 0 then
             if not hidden then
-                local plyCoords = GetEntityCoords(PlayerPedId())
                 local closest = ClosestScene()
                 if closest > 10.0 then
                     Wait(250)
                 else
+                    local plyCoords = GetEntityCoords(PlayerPedId())
                     for k, v in pairs(scenes) do
                         distance = Vdist(plyCoords, v.coords)
                         if distance <= v.distance then
