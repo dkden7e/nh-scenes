@@ -36,9 +36,7 @@ https://streamable.com/jkhv35
 Very Rarely scenes stop appearing and relog is needed
 
 # Support
-Any issues feel free to contact me on the [FiveM Forums](https://forum.cfx.re/u/nerohiro/summary) or on discord `NeroHiro#0001`
-
-or feel free to report any issues you have in the GitHub [Issues](https://github.com/nerohiro/nh-scenes/issues)
+Feel free to report any issues you have in the GitHub [Issues](https://github.com/nerohiro/nh-scenes/issues)
 
 if you wish to add something to it, do a pull request on the github [Pull Requests](https://github.com/nerohiro/nh-scenes/pulls)
 
