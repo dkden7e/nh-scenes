@@ -11,32 +11,31 @@ function GetCoordsFromCam(distance, coords)
     return vector3(coords[1] + direction[1] * distance, coords[2] + direction[2] * distance, coords[3] + direction[3] * distance)
 end
 
-function DrawScene(coords, text, color, dist)
+function DrawScene(coords, text, color)
     local onScreen, x, y = GetScreenCoordFromWorldCoord(coords.x, coords.y, coords.z)
-    if dist < 1.75 then dist = 1.75 end
-
-    local scale = ((1 / dist) * 2) * (1 / GetGameplayCamFov()) * 70
-
+    local dist = #(GetGameplayCamCoord() - coords)
+    
+    local scale = ((1 / dist) * 2) * (1 / GetGameplayCamFov()) * 55
+    
     if onScreen then
         BeginTextCommandDisplayText("STRING")
         AddTextComponentSubstringKeyboardDisplay(text)
+        SetTextColour(color[1], color[2], color[3], 255)
+        SetTextScale(0.0 * scale, 0.50 * scale)
         SetTextFont(0)
         SetTextCentre(1)
-        SetTextDropshadow(0, 0, 0, 0, 155)
-        SetTextEdge(1, 0, 0, 0, 250)
-        SetTextScale(0.0 * scale, 0.30 * scale)
-        SetTextColour(color[1], color[2], color[3], 255)
+        SetTextDropshadow(1, 0, 0, 0, 155)
+        EndTextCommandDisplayText(x, y)
         
-        local height = GetTextScaleHeight(0.40 * scale, 0)
+        local height = GetTextScaleHeight(1 * scale, 0) - 0.005
         local length = string.len(text)
-        local limiter = 160
+        local limiter = 120
         if length > 98 then
             length = 98
             limiter = 200
         end
         local width = length / limiter * scale
-        EndTextCommandDisplayText(x, y)
-        DrawRect(x, y + scale / 90, width, height, 0, 0, 0, 90)
+        DrawRect(x, (y + scale / 50), width, height, 0, 0, 0, 90)
     end
 end
 
