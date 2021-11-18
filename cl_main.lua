@@ -153,7 +153,7 @@ CreateScene = function()
         if distance < 1.1 then distance = 1.1 end
         distance = distance + 0.0
 
-        color = string.lower(color)
+        color = color and string.lower(color)
         if not color or not Colors[color] then color = "white" end
         color = Colors[color]
         
