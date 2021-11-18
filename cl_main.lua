@@ -138,7 +138,7 @@ CreateScene = function()
         
         if x == nil or y == nil or z == nil then return end
         
-        local keyboard, message, color, distance = exports["rz-keyboard"]:Keyboard({
+        local keyboard, message, color, distance = exports["nh-keyboard"]:Keyboard({
             header = "Add Scene",
             rows = {
                 "Message",
