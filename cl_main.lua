@@ -165,10 +165,8 @@ HideScenes = function()
     Hidden = not Hidden
     if Hidden then
         print("Scenes Disabled")
-        TriggerEvent("ShortText", "Scenes Disabled", 1)
     else
         print("Scenes Enabled")
-        TriggerEvent("ShortText", "Scenes Enabled", 1)
     end
 end
 
