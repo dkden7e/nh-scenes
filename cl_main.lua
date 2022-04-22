@@ -204,12 +204,13 @@ ProcessBinds = function()
             ["ESC"] = 200, --Esc/Backspace
         }
         RegisterCommand("+scenecreate", function() end)
+        RegisterCommand("rastro", CreateScene)
         RegisterCommand("-scenecreate", CreateScene)
         RegisterCommand("+scenehide", HideScenes)
         RegisterCommand("+scenedelete", DeleteScene)
-        RegisterKeyMapping("+scenecreate", "(scenes): Place Scene", "keyboard", "")
-        RegisterKeyMapping("+scenehide", "(scenes): Toggle Scenes", "keyboard", "")
-        RegisterKeyMapping("+scenedelete", "(scenes): Delete Scene", "keyboard", "")
+        RegisterKeyMapping("+scenecreate", "(rastros): Añadir rastro", "keyboard", "")
+        RegisterKeyMapping("+scenehide", "(rastros): Desactivar rastros", "keyboard", "")
+        RegisterKeyMapping("+scenedelete", "(rastros): Borrar rastro", "keyboard", "")
     end
 end
 
